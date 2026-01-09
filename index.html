@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Chazeaud - Soutien Scolaire & Coaching</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        school: {
+                            blue: '#2563EB',   // Bleu confiance
+                            dark: '#1E293B',   // Texte sombre
+                            orange: '#F97316', // Accent dynamique
+                            light: '#EFF6FF',  // Fond très clair
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'], // Police ronde et moderne
+                        display: ['Fredoka', 'sans-serif'], // Titres sympas
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { overflow: hidden; }
+        .slide-container {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: hidden;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        /* Animations */
+        .fade-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(30px); }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Overlays */
+        .overlay-blue { background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(30, 41, 59, 0.7)); }
+        .overlay-dark { background: rgba(15, 23, 42, 0.85); }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-bottom: 5px solid #2563EB;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-8px); border-bottom-color: #F97316; }
+        
+        /* Onglets */
+        .glass-tab {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-school-light text-school-dark">
+
+    <!-- Navigation -->
+    <div class="fixed bottom-8 right-8 z-50 flex gap-4">
+        <button onclick="prevSlide()" class="p-4 bg-white shadow-xl rounded-full hover:bg-school-blue hover:text-white transition text-school-blue border border-blue-100"><i class="fa-solid fa-chevron-up"></i></button>
+        <button onclick="nextSlide()" class="p-4 bg-school-orange text-white shadow-xl rounded-full hover:bg-orange-600 transition"><i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+
+    <!-- Badge Fixe -->
+    <div class="fixed top-6 left-8 z-50 bg-white px-5 py-2 rounded-full shadow-md border border-school-blue flex items-center gap-2">
+        <i class="fa-solid fa-graduation-cap text-school-blue"></i>
+        <span class="font-bold text-school-dark">Bruno.C <span class="text-school-orange">Coach</span></span>
+    </div>
+
+    <div class="slide-container" id="scroller">
+
+        <!-- SLIDE 1 : HERO -->
+        <section class="slide relative">
+            <div class="absolute inset-0 z-0">
+                <img src="library.jpg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 overlay-blue"></div>
+            </div>
+
+            <div class="relative z-10 max-w-5xl w-full px-6 text-white text-center">
+                <div class="fade-up">
+                    <div class="inline-block px-4 py-1 bg-school-orange rounded-full text-sm font-bold mb-6 tracking-wide shadow-lg transform -rotate-2">
+                        🚀 Maths • Éco • Méthodologie
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 drop-shadow-lg">
+                        Réussir, ça s'apprend.
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-light mb-12 text-blue-100 max-w-3xl mx-auto">
+                        Accompagnement scolaire par un <span class="font-bold text-white border-b-4 border-school-orange">Ingénieur Data & Risques</span> (Bac+5).
+                    </h2>
+                </div>
+
+                <!-- Onglets Rapides -->
+                <div class="flex flex-wrap justify-center gap-6 fade-up delay-1">
+                    <div class="glass-tab px-8 py-4 rounded-2xl flex items-center gap-4">
+                        <i class="fa-solid fa-chart-line text-3xl text-school-orange"></i>
+                        <div class="text-left">
+                            <div class="text-sm font-bold opacity-80 uppercase">Niveau</div>
+                            <div class="text-xl font-bold">Lycée & Supérieur</div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-tab px-8 py-4 rounded-2xl flex items-center gap-4">
+                        <i class="fa-solid fa-brain text-3xl text-school-orange"></i>
+                        <div class="text-left">
+                            <div class="text-sm font-bold opacity-80 uppercase">Approche</div>
+                            <div class="text-xl font-bold">Logique & Méthode</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2 : LE PROFIL (Légitimité) -->
+        <section class="slide bg-white">
+            <div class="max-w-6xl w-full px-6">
+                <h2 class="text-4xl font-display font-bold text-school-dark mb-16 fade-up text-center">
+                    Pourquoi me faire confiance ?
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 fade-up delay-1 items-center">
+                    <!-- Diplômes -->
+                    <div class="space-y-6 relative">
+                        <div class="absolute -left-4 top-0 bottom-0 w-1 bg-school-blue rounded"></div>
+                        
+                        <div class="pl-6">
+                            <span class="text-5xl font-black text-blue-100 absolute -z-10 -top-6 left-4">2025</span>
+                            <h3 class="text-2xl font-bold text-school-blue">Master Ingénierie & Data Science</h3>
+                            <p class="text-gray-600 font-semibold">Université de Bordeaux</p>
+                            <p class="text-sm text-gray-500 mt-2">Expertise en Mathématiques appliquées, Statistiques et Python.</p>
+                        </div>
+
+                        <div class="pl-6">
+                            <span class="text-5xl font-black text-blue-100 absolute -z-10 -top-6 left-4">2020</span>
+                            <h3 class="text-xl font-bold text-school-dark">Bac Scientifique (S)</h3>
+                            <p class="text-gray-600 font-semibold">Spécialité Physique-Chimie</p>
+                            <p class="text-sm text-gray-500 mt-2">Mention Bien. Des bases solides dans toutes les matières scientifiques.</p>
+                        </div>
+                    </div>
+
+                    <!-- Expérience Pro -->
+                    <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-3">
+                            <i class="fa-solid fa-briefcase text-school-orange"></i> L'expérience du terrain
+                        </h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            J'ai travaillé à la <strong>Société Générale</strong> et chez <strong>Forsides</strong>. Je ne suis pas qu'un théoricien : je sais comment les maths et l'économie servent dans la "vraie vie".
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="bg-white px-3 py-1 rounded-full text-sm font-bold text-school-blue shadow-sm">Rigueur</span>
+                            <span class="bg-white px-3 py-1 rounded-full text-sm font-bold text-school-blue shadow-sm">Organisation</span>
+                            <span class="bg-white px-3 py-1 rounded-full text-sm font-bold text-school-blue shadow-sm">Clarté</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3 : OFFRES (Ce que tu enseignes) -->
+        <section class="slide bg-school-light">
+            <div class="max-w-6xl w-full px-6">
+                <h2 class="text-3xl font-display font-bold text-center mb-4 fade-up">Mes Domaines d'Intervention</h2>
+                <p class="text-center text-gray-500 mb-12 fade-up delay-1">Un accompagnement sur-mesure pour débloquer le potentiel.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-up delay-2">
+                    
+                    <!-- MATHS & STATS -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-school-blue text-2xl mb-6 mx-auto">
+                            <i class="fa-solid fa-square-root-variable"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-3">Maths & Stats</h3>
+                        <p class="text-sm text-gray-600 text-center mb-4">
+                            Du Collège à la Licence. Algèbre, Analyse, Probas.
+                        </p>
+                        <ul class="text-sm text-gray-700 space-y-2">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Remise à niveau</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Préparation Bac / Partiels</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Débloquer les peurs</li>
+                        </ul>
+                    </div>
+
+                    <!-- ECO & SES -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center text-school-orange text-2xl mb-6 mx-auto">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-3">SES & Économie</h3>
+                        <p class="text-sm text-gray-600 text-center mb-4">
+                            Pour comprendre le monde et réussir ses dissertations.
+                        </p>
+                        <ul class="text-sm text-gray-700 space-y-2">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Méthodologie de la dissert'</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Micro/Macroéconomie</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Actualité économique</li>
+                        </ul>
+                    </div>
+
+                    <!-- DATA & PYTHON -->
+                    <div class="card p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-2xl mb-6 mx-auto">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-3">Initiation Data</h3>
+                        <p class="text-sm text-gray-600 text-center mb-4">
+                            Apprendre à coder et manipuler des données (Lycée/Sup).
+                        </p>
+                        <ul class="text-sm text-gray-700 space-y-2">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Bases de Python</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Projets NSI (Lycée)</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Logique algorithmique</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4 : PÉDAGOGIE (Le "Plus") -->
+        <section class="slide bg-white">
+            <div class="max-w-5xl w-full px-6 text-center">
+                <h2 class="text-3xl font-display font-bold text-school-blue mb-12 fade-up">Ma Méthode : <span class="text-school-orange">Comprendre > Apprendre</span></h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-up delay-1 text-left">
+                    
+                    <div class="flex gap-4 p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition">
+                        <div class="text-4xl text-school-blue"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Vulgarisation</h3>
+                            <p class="text-sm text-gray-600">
+                                Je n'utilise pas de jargon complexe. J'utilise des exemples concrets (finance, actualité, vie quotidienne) pour donner du sens aux formules.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition">
+                        <div class="text-4xl text-school-orange"><i class="fa-solid fa-list-check"></i></div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Organisation</h3>
+                            <p class="text-sm text-gray-600">
+                                La réussite, c'est 50% de méthode. J'aide l'élève à structurer ses révisions, gérer son temps et adopter la rigueur attendue en examen.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition">
+                        <div class="text-4xl text-green-500"><i class="fa-solid fa-face-smile-beam"></i></div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Confiance</h3>
+                            <p class="text-sm text-gray-600">
+                                Un élève stressé ne peut pas apprendre. J'instaure un climat bienveillant : on a le droit de se tromper, c'est comme ça qu'on progresse.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition">
+                        <div class="text-4xl text-purple-500"><i class="fa-solid fa-laptop-file"></i></div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Outils Modernes</h3>
+                            <p class="text-sm text-gray-600">
+                                J'utilise des outils numériques pour illustrer les cours (graphes interactifs, coding en direct) pour rendre la matière vivante.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5 : CONTACT -->
+        <section class="slide relative">
+            <div class="absolute inset-0 z-0">
+                <img src="maths.jpg" alt="Tableau noir" class="w-full h-full object-cover">
+                <div class="absolute inset-0 overlay-dark"></div>
+            </div>
+
+            <div class="relative z-10 text-center fade-up px-6 text-white">
+                
+                <div class="inline-block p-6 rounded-full bg-school-blue mb-8 shadow-2xl animate-bounce">
+                    <i class="fa-solid fa-rocket text-4xl"></i>
+                </div>
+
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">Prêt à décoller ?</h2>
+                <p class="text-xl text-gray-300 mb-10 max-w-xl mx-auto">
+                    N'attendez pas la veille de l'examen. Un accompagnement régulier est la clé de la sérénité.
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-center gap-6 text-lg">
+                    <a href="mailto:brunochazeaud17@gmail.com" class="px-8 py-4 bg-white text-school-dark rounded-full font-bold hover:bg-school-orange hover:text-white transition shadow-lg flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-envelope"></i> Contacter par Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/bruno-chazeaud-ba390a178/" target="_blank" class="px-8 py-4 bg-transparent border-2 border-white rounded-full font-bold hover:bg-white/10 transition flex items-center justify-center gap-3">
+                        <i class="fa-brands fa-linkedin"></i> Voir mon profil
+                    </a>
+                </div>
+                
+                <p class="mt-8 text-sm opacity-50">Cours en présentiel (Paris/IDF) ou en Visio</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script Navigation -->
+    <script>
+        const container = document.getElementById('scroller');
+        const totalSlides = 5;
+        let currentSlide = 0;
+        function scrollToSlide(index) {
+            container.scrollTo({ top: window.innerHeight * index, behavior: 'smooth' });
+            currentSlide = index;
+        }
+        function nextSlide() { if (currentSlide < totalSlides - 1) scrollToSlide(currentSlide + 1); }
+        function prevSlide() { if (currentSlide > 0) scrollToSlide(currentSlide - 1); }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') prevSlide();
+        });
+        container.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            if (e.deltaY > 0) nextSlide(); else prevSlide();
+        }, { passive: false });
+    </script>
+</body>
+</html>
